@@ -4,7 +4,6 @@
     <groupId>dfm</groupId>
     <artifactId>softparking</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
     <name>Softparking</name>
     
     <properties>
@@ -32,6 +31,12 @@
             <artifactId>javafx-fxml</artifactId>
             <version>14</version>
         </dependency>
+        
+        <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.10.Final</version>
+		</dependency>
     </dependencies>
     
     <build>
