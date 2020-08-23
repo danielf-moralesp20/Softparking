@@ -4,6 +4,5 @@ module dfm.softparking {
     requires transitive javafx.graphics;
     requires java.persistence;
     
-    opens dfm.softparking to javafx.fxml;
-    exports dfm.softparking;
+    opens dfm.softparking to javafx.graphics;
 }
