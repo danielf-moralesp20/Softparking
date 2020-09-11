@@ -1,5 +1,6 @@
 package dfm.softparking.database.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "clientes")
-public class TCliente {	
+public class TCliente implements Serializable {	
+	private static final long serialVersionUID = -8296175137701161785L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_cliente")

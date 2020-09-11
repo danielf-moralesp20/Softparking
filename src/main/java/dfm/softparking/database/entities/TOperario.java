@@ -1,5 +1,7 @@
 package dfm.softparking.database.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "operarios")
-public class TOperario {	
+public class TOperario implements Serializable {
+	private static final long serialVersionUID = -7859750218945731026L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_operario")
