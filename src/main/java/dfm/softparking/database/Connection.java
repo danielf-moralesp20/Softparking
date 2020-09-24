@@ -8,20 +8,18 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class Connection {
-    private static Connection singleton;
-
     private EntityManagerFactory emf;
     private EntityManager em;
-    private transient PropertyChangeSupport changes;
+    private String persistenceUnitName;
+    private transient PropertyChangeSupport changeListeners;
 
-    private  Connection() {
-        changes = new PropertyChangeSupport(this);
+    public Connection(String persistenceUnitName) {
+    	this();
+    	this.persistenceUnitName = persistenceUnitName;
     }
-
-    public static synchronized Connection getInstance() {
-        if (singleton == null)
-            singleton = new Connection();
-        return singleton;
+    
+    public Connection() {
+    	changeListeners = new PropertyChangeSupport(this);
     }
 
     public EntityManager getConnection() {
@@ -30,25 +28,29 @@ public class Connection {
 
     public synchronized void connect() {
         if (emf == null || ! emf.isOpen())
-            emf = Persistence.createEntityManagerFactory("persistence");
+            emf = Persistence.createEntityManagerFactory(persistenceUnitName);
         if (em == null || ! em.isOpen()) {
             em = emf.createEntityManager();
-            changes.firePropertyChange("connection", false, em.isOpen());
+            changeListeners.firePropertyChange(this.getClass().getSimpleName(), false, em.isOpen());
         }
     }
 
     public synchronized void disconnect() {
         if (em != null && em.isOpen()) {
             em.close();
-            changes.firePropertyChange("connection", true, em.isOpen());
+            changeListeners.firePropertyChange(this.getClass().getSimpleName(), true, em.isOpen());
         }
     }
 
     public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
-        changes.addPropertyChangeListener(listener);
+    	changeListeners.addPropertyChangeListener(listener);
     }
 
     public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
-        changes.removePropertyChangeListener(listener);
+    	changeListeners.removePropertyChangeListener(listener);
     }
+    
+    public void setPersistenceUnitName(String persistenceUnitName) {
+		this.persistenceUnitName = persistenceUnitName;
+	}
 }
