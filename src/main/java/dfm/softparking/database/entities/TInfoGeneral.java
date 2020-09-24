@@ -12,51 +12,79 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "infos_generales")
+@NoArgsConstructor
+@ToString(callSuper = true)
 public class TInfoGeneral implements Serializable {
 	private static final long serialVersionUID = 226101105000684811L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_info_general")
-	private int idInfoGeneral;
+	@Getter 
+	private int idInfoGeneral = 3;
 	
 	@Column(length = 30, nullable = false)
+	@Getter
+	@Setter
+	@NonNull
 	private String nombre;
 	
 	@Column(length = 30, nullable = false)
+	@Getter
+	@Setter
+	@NonNull
 	private String apellido;
 	
 	@OneToOne(targetEntity = TDocumento.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinColumn(nullable = false, name = "FK_documento", referencedColumnName = "PK_documento")
+	@Getter
+	@Setter
+	@NonNull
 	private TDocumento documento;
 	
 	@Column()
+	@Getter
+	@Setter
 	private Long celular;
 	
 	@Column(length = 40)
+	@Getter
+	@Setter
 	private String direccion;
 	
 	@Column(length = 70, nullable = false, unique = true)
+	@Getter
+	@Setter
+	@NonNull
 	private String correo;
 	
 	@Column(name = "ruta_foto")
+	@Getter
+	@Setter
 	private String rutaFoto;
 	
 	/*
 	 * Inicio de relaciones mapeadas
 	 */
 	@OneToOne(mappedBy = "infoGeneral", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+	@Getter
+	@Setter
+	@NonNull
 	private TCliente cliente;
 	
 	@OneToOne(mappedBy = "infoGeneral", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+	@Getter
+	@Setter
+	@NonNull
 	private TOperario operario;
-	
-	/*
-	 * Constructores
-	 */
-	public TInfoGeneral() {}
 	
 	public TInfoGeneral(String nombre, String apellido, TDocumento documento, String correo) {
 		this.nombre = nombre;
@@ -64,86 +92,4 @@ public class TInfoGeneral implements Serializable {
 		this.documento = documento;
 		this.correo = correo;
 	}
-
-	/*
-	 * Metodos getters
-	 */
-	public int getIdInfoGeneral() {
-		return idInfoGeneral;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public TDocumento getDocumento() {
-		return documento;
-	}
-
-	public Long getCelular() {
-		return celular;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public String getCorreo() {
-		return correo;
-	}
-
-	public String getRutaFoto() {
-		return rutaFoto;
-	}
-
-	public TCliente getCliente() {
-		return cliente;
-	}
-
-	public TOperario getOperario() {
-		return operario;
-	}
-
-	/*
-	 * Metodos setters
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	public void setDocumento(TDocumento documento) {
-		this.documento = documento;
-	}
-
-	public void setCelular(Long celular) {
-		this.celular = celular;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
-
-	public void setRutaFoto(String rutaFoto) {
-		this.rutaFoto = rutaFoto;
-	}
-
-	public void setCliente(TCliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public void setOperario(TOperario operario) {
-		this.operario = operario;
-	}	
 }

@@ -17,41 +17,59 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "automotores")
+@NoArgsConstructor
+@ToString(callSuper = true)
 public class TAutomotor implements Serializable {
 	private static final long serialVersionUID = 268865280296387192L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_automotor")
+	@Getter
 	private int idAutomotor;
 	
 	@ManyToOne(targetEntity = TCliente.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinColumn(name = "FK_cliente", referencedColumnName = "PK_cliente")
+	@Getter
+	@Setter
+	@NonNull
 	private TCliente cliente;
 	
 	@Column(length = 6, unique = true, nullable = false)
+	@Getter
+	@Setter
+	@NonNull
 	private String placa;
 	
 	@ManyToOne(targetEntity = TTipoVehiculo.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinColumn(name = "FK_tipo_vehiculo", nullable = false, referencedColumnName = "PK_tipo_vehiculo")
+	@Getter
+	@Setter
+	@NonNull
 	private TTipoVehiculo tipoVehiculo;
 	
 	/*
 	 * Inicio de relaciones mapeadas
 	 */
 	@OneToOne(mappedBy = "automotor", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+	@Getter
+	@Setter
+	@NonNull
 	private TParkingAutomor automotorParking;
 	
-	@OneToMany(mappedBy = "automotor", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE},
-			   fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "automotor", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+	@Getter
+	@Setter
+	@NonNull
 	private List<TTicket> tickets = new ArrayList<TTicket>();
-	
-	/*
-	 * Constructores de clase
-	 */
-	public TAutomotor() {}
 	
 	public TAutomotor(TCliente cliente, String placa, TTipoVehiculo tipoVehiculo) {
 		this.cliente = cliente;
@@ -59,59 +77,6 @@ public class TAutomotor implements Serializable {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
-	/*
-	 * Metodos getter
-	 */
-	public int getIdAutomotor() {
-		return idAutomotor;
-	}
-
-	public TCliente getCliente() {
-		return cliente;
-	}
-
-	public String getPlaca() {
-		return placa;
-	}
-
-	public TTipoVehiculo getTipoVehiculo() {
-		return tipoVehiculo;
-	}
-
-	public TParkingAutomor getAutomotorParking() {
-		return automotorParking;
-	}
-
-	public List<TTicket> getTickets() {
-		return tickets;
-	}
-
-	/*
-	 * Metodos setter
-	 */
-	public void setCliente(TCliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
-
-	public void setTipoVehiculo(TTipoVehiculo tipoVehiculo) {
-		this.tipoVehiculo = tipoVehiculo;
-	}
-
-	public void setAutomotorParking(TParkingAutomor automotorParking) {
-		this.automotorParking = automotorParking;
-	}
-
-	public void setTickets(List<TTicket> tickets) {
-		this.tickets = tickets;
-	}
-	
-	/*
-	 * Otras funciones
-	 */
 	public boolean addTicket(TTicket ticket) {
 		return tickets.add(ticket);
 	}

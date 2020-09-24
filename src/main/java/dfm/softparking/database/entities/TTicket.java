@@ -13,36 +13,53 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "tickets")
+@NoArgsConstructor
+@ToString(callSuper = true)
 public class TTicket implements Serializable {
 	private static final long serialVersionUID = -7397844107084396195L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_ticket")
+	@Getter
 	private int idTicket;
 	
 	@Column(name = "fecha_ingreso", nullable = false)
+	@Getter
+	@Setter
+	@NonNull
 	private Date fechaIngreso;
 	
 	@Column(name = "fecha_salida", nullable = false)
+	@Getter
+	@Setter
+	@NonNull
 	private Date fechaSalida;
 	
 	@ManyToOne(targetEntity = TAutomotor.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(nullable = false, name = "FK_automotor", referencedColumnName = "PK_automotor")
+	@Getter
+	@Setter
+	@NonNull
 	private TAutomotor automotor;
 	
 	@Column(name = "valor_total_servicio", nullable = false)
+	@Getter
+	@Setter
 	private float valorTotalServicio;
 	
 	@Column(length = 300)
+	@Getter
+	@Setter
 	private String comentario;
-
-	/*
-	 * Constructores de clase
-	 */
-	public TTicket() {}
 	
 	public TTicket(Date fechaIngreso, Date fechaSalida, TAutomotor automotor, float valorTotalServicio) {
 		this.fechaIngreso = fechaIngreso;
@@ -50,54 +67,4 @@ public class TTicket implements Serializable {
 		this.automotor = automotor;
 		this.valorTotalServicio = valorTotalServicio;
 	}
-
-	/*
-	 * Metodos getter
-	 */
-	public int getIdTicket() {
-		return idTicket;
-	}
-	
-	public Date getFechaIngreso() {
-		return fechaIngreso;
-	}
-	
-	public Date getFechaSalida() {
-		return fechaSalida;
-	}
-	
-	public TAutomotor getAutomotor() {
-		return automotor;
-	}
-	
-	public float getValorTotalServicio() {
-		return valorTotalServicio;
-	}
-	
-	public String getComentario() {
-		return comentario;
-	}
-	
-	/*
-	 * Metodos setter
-	 */
-	public void setFechaIngreso(Date fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
-	}
-
-	public void setFechaSalida(Date fechaSalida) {
-		this.fechaSalida = fechaSalida;
-	}
-
-	public void setAutomotor(TAutomotor automotor) {
-		this.automotor = automotor;
-	}
-
-	public void setValorTotalServicio(float valorTotalServicio) {
-		this.valorTotalServicio = valorTotalServicio;
-	}
-
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
-	}	
 }

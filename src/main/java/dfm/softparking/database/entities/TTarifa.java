@@ -14,59 +14,41 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "tarifas")
+@NoArgsConstructor
+@ToString(callSuper = true)
 public class TTarifa implements Serializable {
 	private static final long serialVersionUID = -1277817548266165623L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_tarifa")
+	@Getter
 	private int idTarifa;
 	
 	@Column(name = "valor_fraccion", nullable = false)
+	@Getter
+	@Setter
 	private float valorFraccion;
 	
 	/*
 	 * Inicio de relaciones mapeadas
 	 */
-	@OneToMany(mappedBy = "tarifa", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, 
-			   fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "tarifa", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+	@Getter
+	@Setter
+	@NonNull
 	private List<TTipoVehiculo> tipoVehiculos = new ArrayList<TTipoVehiculo>();
-	
-	/*
-	 * Constructores de clase
-	 */
-	public TTarifa() {}
 	
 	public TTarifa(float valorFraccion) {
 		this.valorFraccion = valorFraccion;
-	}
-
-	/*
-	 * Metodos getter
-	 */
-	public int getIdTarifa() {
-		return idTarifa;
-	}
-
-	public float getValorFraccion() {
-		return valorFraccion;
-	}
-
-	public List<TTipoVehiculo> getTipoVehiculos() {
-		return tipoVehiculos;
-	}
-
-	/*
-	 * Metodos setter
-	 */
-	public void setValorFraccion(float valorFraccion) {
-		this.valorFraccion = valorFraccion;
-	}
-
-	public void setTipoVehiculos(List<TTipoVehiculo> tipoVehiculos) {
-		this.tipoVehiculos = tipoVehiculos;
 	}
 	
 	/*

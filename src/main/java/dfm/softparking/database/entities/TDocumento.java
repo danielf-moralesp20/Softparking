@@ -13,75 +13,50 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "documentos")
+@NoArgsConstructor
+@ToString(callSuper = true)
 public class TDocumento implements Serializable {
 	private static final long serialVersionUID = -7187166201076355055L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_documento")
+	@Getter
 	private int idDocumento;
 
 	@Column(name = "cod_tipo_documento", nullable = false)
+	@Getter
+	@Setter
 	private int codTipoDocumento;
 	
 	@Column(name = "numero_documento", nullable = false, unique = true)
+	@Getter
+	@Setter
+	@NonNull
 	private	Long numeroDocumento;
 	
 	/*
 	 * Inicio de relaciones mapeadas
 	 */
 	@OneToMany(mappedBy = "documento", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@Getter
+	@Setter
+	@NonNull
 	private List<TInfoGeneral> infoGenerales = new ArrayList<TInfoGeneral>();
-	
-	/*
-	 * Constructores de clase
-	 */
-	public TDocumento() {}
-	
+
 	public TDocumento(int codTipoDocumento, Long numeroDocumento) {
 		this.codTipoDocumento = codTipoDocumento;
 		this.numeroDocumento = numeroDocumento;
 	}
 
-	/*
-	 * Metodos getter
-	 */
-	public int getIdDocumento() {
-		return idDocumento;
-	}
-	
-	public int getCodTipoDocumento() {
-		return codTipoDocumento;
-	}
-
-	public Long getNumeroDocumento() {
-		return numeroDocumento;
-	}
-
-	public List<TInfoGeneral> getInfoGenerales() {
-		return infoGenerales;
-	}
-
-	/*
-	 * Metodos setter
-	 */
-	public void setCodTipoDocumento(int codTipoDocumento) {
-		this.codTipoDocumento = codTipoDocumento;
-	}
-
-	public void setNumeroDocumento(Long numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
-	}
-
-	public void setInfoGenerales(List<TInfoGeneral> infoGenerales) {
-		this.infoGenerales = infoGenerales;
-	}
-	
-	/*
-	 * Otras funciones
-	 */
 	public boolean addInfoGeneral(TInfoGeneral infoGeneral) {
 		return this.infoGenerales.add(infoGeneral);
 	}

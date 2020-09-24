@@ -13,57 +13,40 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "parking_automotores")
+@NoArgsConstructor
+@ToString(callSuper = true)
 public class TParkingAutomor implements Serializable {
 	private static final long serialVersionUID = -7653667211168471673L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PK_parking_automotor")
+	@Getter
 	private int idParkingAutomotor;
 	
 	@OneToOne(targetEntity = TAutomotor.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "FK_automotor", unique = true, nullable = false, 
-				referencedColumnName = "PK_automotor")
+	@JoinColumn(name = "FK_automotor", unique = true, nullable = false, referencedColumnName = "PK_automotor")
+	@Getter
+	@Setter
+	@NonNull
 	private TAutomotor automotor;
 	
 	@Column(name = "fecha_ingreso", nullable = false)
+	@Getter
+	@Setter
+	@NonNull
 	private Date fechaIngreso;
-	
-	/*
-	 * Constructores de clase
-	 */
-	public TParkingAutomor() { }
 	
 	public TParkingAutomor(TAutomotor automotor, Date fechaIngreso) {
 		this.automotor = automotor;
-		this.fechaIngreso = fechaIngreso;
-	}
-
-	/*
-	 * Metodos getter
-	 */
-	public int getIdParkingAutomotor() {
-		return idParkingAutomotor;
-	}
-
-	public TAutomotor getAutomotor() {
-		return automotor;
-	}
-
-	public Date getFechaIngreso() {
-		return fechaIngreso;
-	}
-
-	/*
-	 * Metodos setter
-	 */
-	public void setAutomotor(TAutomotor automotor) {
-		this.automotor = automotor;
-	}
-
-	public void setFechaIngreso(Date fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
 }
