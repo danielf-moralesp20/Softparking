@@ -7,5 +7,9 @@ module dfm.softparking {
     requires lombok;
     requires transitive org.mapstruct.processor;
     
+    requires org.kordamp.ikonli.icomoon;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.materialdesign;
+    
     opens dfm.softparking to javafx.graphics;
 }
