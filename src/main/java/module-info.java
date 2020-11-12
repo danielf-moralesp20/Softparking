@@ -12,4 +12,6 @@ module dfm.softparking {
     requires org.kordamp.ikonli.materialdesign;
     
     opens dfm.softparking to javafx.graphics;
+	opens dfm.softparking.controllers to javafx.fxml;
 }
+

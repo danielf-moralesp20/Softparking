@@ -1,0 +1,46 @@
+* {
+	color-principal : #256E5D;
+}
+
+/*
+ * Text
+ */
+.label{
+	-fx-font-family: "ARIAL";
+	-fx-font-weight: BOLD;
+	-fx-text-fill: color-principal;
+}
+
+/*
+ * Buttons
+ */
+ .button {
+	-fx-cursor: HAND;
+	-fx-background-radius : 6;	
+	-Jfx-button-type : RAISED;
+	-fx-font-family: CONSOLAS;	
+	-fx-font-size: 13;	
+	-fx-prompt-text-fill:  WHITE;
+	-fx-background-color: color-principal;
+	-fx-text-fill: WHITE;
+	
+}
+
+.button:hover {
+    -fx-background-color: transparent, derive(color-principal, 35%);
+}
+
+/*
+ * Text field
+ */
+.text-field {
+	-fx-cursor: TEXT;
+	-fx-font-family: CONSOLAS;	
+	-fx-font-size: 14;
+	-fx-text-fill: BLACK;
+	-jfx-label-float: true;		
+	-fx-prompt-text-fill: color-principal;
+	-jfx-focus-color: color-principal;
+	-jfx-unfocus-color: color-principal;
+}
+ 
