@@ -2,8 +2,7 @@ package dfm.softparking.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import dfm.softparking.runtime.AppRuntime;
+	
 import dfm.softparking.utils.UtilUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,45 +11,46 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class FrameController implements IControllerView, Initializable {
-	public static final int MAIN_YIELD = 0;
-	
+public class FrameController extends Stage implements IContainerView, IControllerView, Initializable {
 	public FrameController() {
 		location = getClass().getResource("/dfm/softparking/views/Frame.fxml");
+		super.initStyle(StageStyle.UNDECORATED);
+		super.setTitle("Softparking");
 	}
 	
+	@Override
+    public void initialize(URL location, ResourceBundle resources) {
+    }
+	
     @FXML public void btnCloseEventOnAction(ActionEvent event) {
-		AppRuntime.getInstance().closeApplication();
+    	super.close();
     }
 
     @FXML public void btnMinimizeEventOnAction(ActionEvent event) {
-		AppRuntime.getInstance().getUiRuntime().minimizeWindow(this);
+    	super.setIconified(true);
 	}
-
-    @Override
-    public void initialize(URL locationUrl, ResourceBundle resources) {
-    	assert rootContainer != null : "fx:id=\"rootContainer\" was not injected: check your FXML file 'Frame.fxml'.";
-    	assert mainYield != null : "fx:id=\"mainYield\" was not injected: check your FXML file 'Frame.fxml'.";
-    }
     
 	@Override
 	public void loadResource() {
 		UtilUI.loadResourceFXML(this, location);
-	}
-
+    	super.setScene(new Scene(globalContainer));
+    }
+	
 	@Override
 	public void add(int pos, Pane view) {
 		switch (pos) {
-			case MAIN_YIELD:
-			default:
-				UtilUI.add(mainYield, view);
+			case MAIN_CONTAINER:
+				UtilUI.add(mainContainer, view);
 				break;
 		}
 	}
-    
+	
     @FXML private ResourceBundle resources;
-    @FXML private URL location;
-    @Getter @FXML private VBox rootContainer;
-    @FXML private AnchorPane mainYield;
+    @Getter @FXML private URL location;
+    @Getter @FXML private VBox globalContainer;
+    @FXML private AnchorPane mainContainer;
 }

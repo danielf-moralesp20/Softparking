@@ -1,5 +1,6 @@
 * {
 	color-principal : #256E5D;
+	-fx-font-family: ARIAL;
 }
 
 /*
@@ -19,7 +20,7 @@
 	-fx-background-radius : 6;	
 	-Jfx-button-type : RAISED;
 	-fx-font-family: CONSOLAS;	
-	-fx-font-size: 13;	
+	-fx-font-size: 13;
 	-fx-prompt-text-fill:  WHITE;
 	-fx-background-color: color-principal;
 	-fx-text-fill: WHITE;
@@ -43,4 +44,3 @@
 	-jfx-focus-color: color-principal;
 	-jfx-unfocus-color: color-principal;
 }
- 

@@ -1,12 +1,16 @@
 package dfm.softparking.controllers;
 
+import java.net.URL;
+
+import dfm.softparking.utils.UtilUI;
 import javafx.scene.layout.Pane;
 
-public interface IControllerView {
+public interface IControllerView {		
+	default public void loadResource() {
+		UtilUI.loadResourceFXML(this, getLocation());
+	}
 	
-	public void loadResource();
+	public Pane getGlobalContainer();
 	
-	public Pane getRootContainer();
-	
-	public void add(int pos, Pane view);
+	public URL getLocation();
 }

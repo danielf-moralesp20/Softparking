@@ -33,6 +33,12 @@
             <version>14</version>
         </dependency>
         
+        <dependency>
+		    <groupId>com.jfoenix</groupId>
+		    <artifactId>jfoenix</artifactId>
+		    <version>9.0.9</version>
+		</dependency>
+		
         <!-- ORM dependencies -->
         <dependency>
 			<groupId>org.hibernate</groupId>
@@ -46,7 +52,7 @@
 		    <artifactId>lombok</artifactId>
 		    <version>1.18.12</version>
 		    <scope>provided</scope>
-		</dependency>		
+		</dependency>
 		
 		<dependency>
 		    <groupId>org.mapstruct</groupId>
@@ -58,19 +64,19 @@
 	    <dependency>
 	        <groupId>org.kordamp.ikonli</groupId>
 	        <artifactId>ikonli-javafx</artifactId>
-	        <version>11.5.0</version>
+	        <version>12.1.0</version>
 	    </dependency>
 	    
 	    <dependency>
 		    <groupId>org.kordamp.ikonli</groupId>
 		    <artifactId>ikonli-icomoon-pack</artifactId>
-		    <version>11.5.0</version>
+		    <version>12.1.0</version>
 		</dependency>
 		
 		<dependency>
 		    <groupId>org.kordamp.ikonli</groupId>
 		    <artifactId>ikonli-materialdesign-pack</artifactId>
-		    <version>11.5.0</version>
+		    <version>12.1.0</version>
 		</dependency>
     </dependencies>
     
