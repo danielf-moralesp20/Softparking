@@ -78,6 +78,12 @@
 		    <artifactId>ikonli-materialdesign-pack</artifactId>
 		    <version>12.1.0</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.kordamp.ikonli</groupId>
+		    <artifactId>ikonli-fontawesome5-pack</artifactId>
+		    <version>12.2.0</version>
+		</dependency>
     </dependencies>
     
     <build>

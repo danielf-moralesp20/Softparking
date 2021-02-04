@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox fx:id="globalContainer" prefHeight="260.0" prefWidth="300.0" spacing="3.0" style="-fx-background-color: color-principal;" stylesheets="@../../../style/root.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane maxHeight="60.0" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="25.0" onAction="#btnParkingEventOnAction" text="Parking" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>            
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-parking" iconSize="19" translateX="10.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="60.0" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="25.0" onAction="#btnTicketsEventOnAction" text="Tickets" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="icm-ticket" iconSize="19" translateX="10.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="60.0" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="25.0" onAction="#btnUsersEventOnAction" text="Usuarios" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="icm-users" iconSize="19" translateX="10.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="60.0" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="25.0" onAction="#btnCustomersEventOnAction" text="Clientes" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fas-handshake" iconSize="19" translateX="10.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="60.0" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="25.0" onAction="#btnReportsEventOnAction" text="Reportes" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="mdi-chart-line" iconSize="19" translateX="10.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="60.0" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="25.0" onAction="#btnSettingsEventOnAction" text="Configuraciones" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="icm-cogs" iconSize="19" translateX="10.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

@@ -11,12 +11,12 @@ module dfm.softparking {
     requires lombok;
     requires transitive org.mapstruct.processor;
     
-    requires org.kordamp.ikonli.icomoon;
     requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.icomoon;
     requires org.kordamp.ikonli.materialdesign;
+    requires org.kordamp.ikonli.fontawesome5;
     
     opens dfm.softparking to javafx.graphics;
 	opens dfm.softparking.controllers.index to javafx.fxml;
 	opens dfm.softparking.controllers to javafx.fxml;
 }
-
