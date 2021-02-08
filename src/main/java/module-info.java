@@ -19,4 +19,5 @@ module dfm.softparking {
     opens dfm.softparking to javafx.graphics;
 	opens dfm.softparking.controllers.index to javafx.fxml;
 	opens dfm.softparking.controllers to javafx.fxml;
+	opens dfm.softparking.controllers.application.menu to javafx.fxml;
 }

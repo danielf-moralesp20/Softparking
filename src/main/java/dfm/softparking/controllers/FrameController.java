@@ -2,7 +2,7 @@ package dfm.softparking.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-	
+
 import dfm.softparking.utils.UtilUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +24,7 @@ public class FrameController extends Stage implements IContainerView, IControlle
 	
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
+		super.setScene(new Scene(globalContainer));
     }
 	
     @FXML public void btnCloseEventOnAction(ActionEvent event) {
@@ -33,12 +34,6 @@ public class FrameController extends Stage implements IContainerView, IControlle
     @FXML public void btnMinimizeEventOnAction(ActionEvent event) {
     	super.setIconified(true);
 	}
-    
-	@Override
-	public void loadResource() {
-		UtilUI.loadResourceFXML(this, location);
-    	super.setScene(new Scene(globalContainer));
-    }
 	
 	@Override
 	public void add(int pos, Pane view) {
