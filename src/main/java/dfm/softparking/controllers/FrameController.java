@@ -17,7 +17,7 @@ import javafx.stage.StageStyle;
 
 public class FrameController extends Stage implements IContainerView, IControllerView, Initializable {
 	public FrameController() {
-		location = getClass().getResource("/dfm/softparking/views/Frame.fxml");
+		location = getClass().getResource("/views/Frame.fxml");
 		super.initStyle(StageStyle.UNDECORATED);
 		super.setTitle("Softparking");
 	}

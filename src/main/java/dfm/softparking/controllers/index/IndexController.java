@@ -21,7 +21,7 @@ public class IndexController implements IWindowView, Initializable {
 	@Getter private FrameController frame;
 	
 	public IndexController() {
-		location = getClass().getResource("/dfm/softparking/views/index/Index.fxml");
+		location = getClass().getResource("/views/index/Index.fxml");
 		frame = new FrameController();
 		frame.setMaximized(true);
 	}

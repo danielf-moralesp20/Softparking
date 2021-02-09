@@ -15,7 +15,7 @@ import lombok.Getter;
 
 public class MenuController implements IControllerView, Initializable {
 	public MenuController() {
-		location = getClass().getResource("/dfm/softparking/views/application/menu/Menu.fxml");
+		location = getClass().getResource("/views/application/menu/Menu.fxml");
 	}
 	
 	@Override
