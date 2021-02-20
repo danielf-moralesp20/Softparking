@@ -101,7 +101,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>dfm.softparking.App</mainClass>
+                    <mainClass>dfm.softparking.controllers.index.IndexController</mainClass>
                 </configuration>
             </plugin>
         </plugins>

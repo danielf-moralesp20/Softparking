@@ -5,9 +5,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dfm.softparking.business.runtime.Collector;
+import lombok.Getter;
 
-public abstract class Language {
-	private Language() {
+public class Language {
+	@Getter private String identifier;
+	@Getter private String name;
+	
+	public Language(String identifier, String name) {
+		this.identifier = identifier;
+	    this.name = name;	    
 	}
 	
 	public static String translate(String text) {

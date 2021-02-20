@@ -8,13 +8,14 @@ public class Collector {
 	private Map<Integer, Object> heap;
 	
 	public static final int BUNDLED_LANG = 1;
-	public static final int LOCALE = 2;
+	public static final int AVAILABE_LANGUAGES = 2;
+	public static final int APPLICATION_PATH = 3;
 	
 	private Collector() {
 		heap = new HashMap<Integer, Object>();
 	}
 	
-	public static Collector getCollector() {
+	public synchronized static Collector getCollector() {
 		if(singlenton == null) singlenton = new Collector();
 		
 		return singlenton;
@@ -28,3 +29,4 @@ public class Collector {
 		heap.put(key, value);
 	}
 }
+
