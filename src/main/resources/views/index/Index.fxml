@@ -47,7 +47,7 @@
             </AnchorPane>
             <VBox alignment="TOP_CENTER" fillWidth="false" VBox.vgrow="ALWAYS">
                <children>
-      				<Label fx:id="lblMotto" alignment="CENTER" contentDisplay="CENTER" prefHeight="140.0" prefWidth="380.0" text="¡%MOTTO%!" textAlignment="CENTER" textFill="#32a539" wrapText="true" VBox.vgrow="NEVER">
+      				<Label alignment="CENTER" contentDisplay="CENTER" prefHeight="140.0" prefWidth="380.0" text="%MOTTO" textAlignment="CENTER" textFill="#32a539" wrapText="true" VBox.vgrow="NEVER">
       					<font>
       						<Font name="System Bold Italic" size="48.0" />
       					</font>
@@ -60,17 +60,17 @@
                   </AnchorPane>
                   <VBox alignment="CENTER" prefWidth="380.0" spacing="30.0" VBox.vgrow="ALWAYS">
                      <children>
-            				<JFXTextField fx:id="txtFieldEmail" focusColor="WHITE" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="380.0" promptText="\%EMAIL%" unFocusColor="WHITE">
+            				<JFXTextField focusColor="WHITE" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="380.0" promptText="%EMAIL" unFocusColor="WHITE">
             					<font>
             						<Font name="Consolas" size="14.0" />
             					</font>
             				</JFXTextField>
-            				<JFXPasswordField fx:id="psswordField" focusColor="#318672" labelFloat="true" prefHeight="25.0" prefWidth="380.0" promptText="\%PASSWORD%" unFocusColor="#256e5d">
+            				<JFXPasswordField focusColor="#318672" labelFloat="true" prefHeight="25.0" prefWidth="380.0" promptText="%PASSWORD" unFocusColor="#256e5d">
             					<font>
             						<Font name="Consolas" size="14.0" />
             					</font>
             				</JFXPasswordField>
-            				<JFXButton fx:id="btnLogin" buttonType="RAISED" onAction="#btnLogInEventOnAction" prefHeight="28.0" prefWidth="260.0" text="\%SIGN_IN%">
+            				<JFXButton buttonType="RAISED" onAction="#btnLogInEventOnAction" prefHeight="28.0" prefWidth="260.0" text="%SIGN_IN">
             					<font>
             						<Font name="Consolas" size="13.0" />
             					</font>
@@ -91,7 +91,7 @@
                   <Insets top="10.0" />
                </padding>
             </VBox>
-				<Label fx:id="lblCredits" text="\%CREDITS%" textFill="#256e5d" VBox.vgrow="NEVER">
+				<Label text="%CREDITS" textFill="#256e5d" VBox.vgrow="NEVER">
 					<font>
 						<Font name="Consolas Bold Italic" size="12.0" />
 					</font>

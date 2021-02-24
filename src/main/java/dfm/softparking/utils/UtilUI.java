@@ -1,7 +1,9 @@
 package dfm.softparking.utils;
 
 import java.net.URL;
+import java.util.ResourceBundle;
 
+import dfm.softparking.business.runtime.Collector;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
@@ -13,6 +15,7 @@ public abstract class UtilUI {
 		FXMLLoader fxmlLoader = new FXMLLoader(urlResourceFXML);
 		try {
 			fxmlLoader.setController(controller);
+			fxmlLoader.setResources((ResourceBundle) Collector.getCollector().get(Collector.BUNDLED_LANG));
 			fxmlLoader.load();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -26,7 +29,7 @@ public abstract class UtilUI {
 		containerParent.getChildren().clear();
 		containerParent.getChildren().add(containerChildren);
 		
-		containerChildren.prefWidthProperty().bind(containerParent.widthProperty());
-		containerChildren.prefHeightProperty().bind(containerParent.heightProperty());
+		containerChildren.prefWidthProperty().bind(containerParent.prefWidthProperty());
+		containerChildren.prefHeightProperty().bind(containerParent.prefHeightProperty());
 	}
 }
