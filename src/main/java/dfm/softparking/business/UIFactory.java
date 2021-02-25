@@ -6,14 +6,16 @@ import dfm.softparking.controllers.application.menu.MenuController;
 import dfm.softparking.controllers.index.IndexController;
 
 public class UIFactory {
-	public static final int FRAME = 0;
-	public static final int INDEX = 1;
-	public static final int MENU = 2;
+	public static enum UIModule {
+		FRAME,
+		INDEX,
+		MENU
+	}
 	
-	public static IControllerView buildView(int view) {
+	public static IControllerView buildView(UIModule module) {
 		IControllerView controllerView = null;
 		
-		switch (view) {
+		switch (module) {
 			case FRAME:
 				controllerView = new FrameController();
 				break;

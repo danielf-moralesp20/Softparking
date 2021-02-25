@@ -3,6 +3,7 @@ package dfm.softparking.business;
 import java.util.ResourceBundle;
 
 import dfm.softparking.business.runtime.Collector;
+import dfm.softparking.business.runtime.Collector.CollectorKey;
 import lombok.Getter;
 
 public class Language {
@@ -15,7 +16,7 @@ public class Language {
 	}
 	
 	public static String translate(String key) {
-		ResourceBundle langBundle = (ResourceBundle) Collector.getCollector().get(Collector.BUNDLED_LANG);
+		ResourceBundle langBundle = (ResourceBundle) Collector.getCollector().get(CollectorKey.BUNDLED_LANG);
 		return langBundle.getString(key.toUpperCase());
 	}
 }

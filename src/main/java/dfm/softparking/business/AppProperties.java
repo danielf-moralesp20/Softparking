@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Properties;
 
 import dfm.softparking.business.runtime.Collector;
+import dfm.softparking.business.runtime.Collector.CollectorKey;
 import lombok.Getter;
 
 public class AppProperties {
@@ -16,11 +17,13 @@ public class AppProperties {
 	@Getter private File file;
 	private Properties properties;
 	
-	public static String LANGUAGE = "language";
+	public static enum AppPropertyKey {
+		LANGUAGE
+	}
 	
 	private AppProperties() {
 		properties = new Properties();
-		file = new File((String) Collector.getCollector().get(Collector.APPLICATION_PATH), "config");
+		file = new File((String) Collector.getCollector().get(CollectorKey.APPLICATION_PATH), "config");
 	    init();
 	}
 	
@@ -42,10 +45,10 @@ public class AppProperties {
 	private void defaultProperties() throws IOException {
 		// Language 
 		Locale locale = Locale.getDefault();
-		List<String> availableLanguages = (List<String>) Collector.getCollector().get(Collector.AVAILABE_LANGUAGES);
+		List<String> availableLanguages = (List<String>) Collector.getCollector().get(CollectorKey.AVAILABE_LANGUAGES);
 		if(!availableLanguages.contains(locale.getLanguage())) 
 			locale = new Locale(availableLanguages.get(0));
-		properties.setProperty(LANGUAGE, locale.getLanguage());
+		set(AppPropertyKey.LANGUAGE, locale.getLanguage());
 		
 		store();
 	}
@@ -62,11 +65,11 @@ public class AppProperties {
 		reader.close();
 	}
 	
-	public String get(String key) {
-		return (String) properties.get(key);
+	public String get(AppPropertyKey key) {
+		return (String) properties.get(key.toString());
 	}
 	
-	public void set(String key, String value) {
-		properties.setProperty(key, value);
+	public void set(AppPropertyKey key, String value) {
+		properties.setProperty(key.toString(), value);
 	}
 }

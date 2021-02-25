@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dfm.softparking.business.runtime.Collector;
+import dfm.softparking.business.runtime.Collector.CollectorKey;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
@@ -15,7 +16,7 @@ public abstract class UtilUI {
 		FXMLLoader fxmlLoader = new FXMLLoader(urlResourceFXML);
 		try {
 			fxmlLoader.setController(controller);
-			fxmlLoader.setResources((ResourceBundle) Collector.getCollector().get(Collector.BUNDLED_LANG));
+			fxmlLoader.setResources((ResourceBundle) Collector.getCollector().get(CollectorKey.BUNDLED_LANG));
 			fxmlLoader.load();
 		} catch (Exception e) {
 			e.printStackTrace();
