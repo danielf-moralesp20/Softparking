@@ -12,6 +12,8 @@ import dfm.softparking.business.AppProperties.AppPropertyKey;
 import dfm.softparking.business.runtime.Collector;
 import dfm.softparking.business.runtime.Collector.CollectorKey;
 import dfm.softparking.controllers.index.IndexController;
+import dfm.softparking.database.exceptions.DatabaseException;
+import dfm.softparking.database.utils.Connection;
 
 public class App {
 	public static void main(String[] args) {
@@ -30,6 +32,13 @@ public class App {
        	
        	Locale locale = new Locale(AppProperties.getAppProperties().get(AppPropertyKey.LANGUAGE));
        	collector.set(CollectorKey.BUNDLED_LANG, ResourceBundle.getBundle("bundles.langBundle", locale));
+       	
+       	Connection.initialize("persistence");
+       	try {
+			Connection.getInstance().connect();
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+		}
     }
 }
 

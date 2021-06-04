@@ -9,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import dfm.softparking.database.utils.TableQuery;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -21,8 +23,9 @@ import lombok.ToString;
 @Entity
 @Table(name = "operarios")
 @NoArgsConstructor
-@ToString(callSuper = true)
-public class TOperario implements Serializable {
+@ToString
+@NamedQuery(name = "login", query = "FROM TOperario WHERE infoGeneral.correo = :email AND contrasenia = :pass")
+public class TOperario extends TableQuery<TOperario> implements Serializable {
 	private static final long serialVersionUID = -7859750218945731026L;
 
 	@Id
@@ -53,5 +56,10 @@ public class TOperario implements Serializable {
 		this.infoGeneral = infoGeneral;
 		this.contrasenia = contrasenia;
 		this.isAccesible = isAccesible;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static TableQuery<TOperario> of() {
+		return (TableQuery<TOperario>) of(TOperario.class);
 	}
 }

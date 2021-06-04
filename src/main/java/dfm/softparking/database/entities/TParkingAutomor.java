@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import dfm.softparking.database.utils.TableQuery;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -22,8 +23,8 @@ import lombok.ToString;
 @Entity
 @Table(name = "parking_automotores")
 @NoArgsConstructor
-@ToString(callSuper = true)
-public class TParkingAutomor implements Serializable {
+@ToString
+public class TParkingAutomor extends TableQuery<TParkingAutomor> implements Serializable {
 	private static final long serialVersionUID = -7653667211168471673L;
 
 	@Id
@@ -48,5 +49,10 @@ public class TParkingAutomor implements Serializable {
 	public TParkingAutomor(TAutomotor automotor, Date fechaIngreso) {
 		this.automotor = automotor;
 		this.fechaIngreso = fechaIngreso;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static TableQuery<TParkingAutomor> of() {
+		return (TableQuery<TParkingAutomor>) of(TParkingAutomor.class);
 	}
 }

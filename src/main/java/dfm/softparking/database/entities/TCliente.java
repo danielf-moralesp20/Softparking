@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import dfm.softparking.database.utils.TableQuery;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -25,8 +26,8 @@ import lombok.ToString;
 @Entity
 @Table(name = "clientes")
 @NoArgsConstructor
-@ToString(callSuper = true)
-public class TCliente implements Serializable {	
+@ToString(exclude = {"automotores"})
+public class TCliente extends TableQuery<TCliente> implements Serializable {	
 	private static final long serialVersionUID = -8296175137701161785L;
 
 	@Id
@@ -55,15 +56,8 @@ public class TCliente implements Serializable {
 		this.infoGeneral = infoGeneral;
 	}
 	
-	public boolean addAutomotor(TAutomotor automotor) {
-		return automotores.add(automotor);
-	}
-	
-	public boolean isEmptyAutomotores() {
-		return automotores.isEmpty();
-	}
-
-	public boolean removeAutomotor(TAutomotor automotor) {
-		return automotores.remove(automotor);
+	@SuppressWarnings("unchecked")
+	public static TableQuery<TCliente> of() {
+		return (TableQuery<TCliente>) of(TCliente.class);
 	}
 }

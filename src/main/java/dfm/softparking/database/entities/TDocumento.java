@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import dfm.softparking.database.utils.TableQuery;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -22,8 +23,8 @@ import lombok.ToString;
 @Entity
 @Table(name = "documentos")
 @NoArgsConstructor
-@ToString(callSuper = true)
-public class TDocumento implements Serializable {
+@ToString(exclude = {"infoGenerales"})
+public class TDocumento extends TableQuery<TDocumento> implements Serializable {
 	private static final long serialVersionUID = -7187166201076355055L;
 
 	@Id
@@ -56,16 +57,9 @@ public class TDocumento implements Serializable {
 		this.codTipoDocumento = codTipoDocumento;
 		this.numeroDocumento = numeroDocumento;
 	}
-
-	public boolean addInfoGeneral(TInfoGeneral infoGeneral) {
-		return this.infoGenerales.add(infoGeneral);
-	}
 	
-	public boolean isEmptyInfoGenerales() {
-		return this.infoGenerales.isEmpty();
-	}
-
-	public boolean removeInfoGeneral(TInfoGeneral infoGeneral) {
-		return this.infoGenerales.remove(infoGeneral);
+	@SuppressWarnings("unchecked")
+	public static TableQuery<TDocumento> of() {
+		return (TableQuery<TDocumento>) of(TDocumento.class);
 	}
 }

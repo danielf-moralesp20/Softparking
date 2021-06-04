@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import dfm.softparking.database.utils.TableQuery;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -23,8 +24,8 @@ import lombok.ToString;
 @Entity
 @Table(name = "tarifas")
 @NoArgsConstructor
-@ToString(callSuper = true)
-public class TTarifa implements Serializable {
+@ToString(exclude = {"tipoVehiculos"})
+public class TTarifa extends TableQuery<TTarifa> implements Serializable {
 	private static final long serialVersionUID = -1277817548266165623L;
 
 	@Id
@@ -51,18 +52,8 @@ public class TTarifa implements Serializable {
 		this.valorFraccion = valorFraccion;
 	}
 	
-	/*
-	 * Otras funciones
-	 */
-	public boolean addTipoVehiculo(TTipoVehiculo tipoVehiculo) {
-		return tipoVehiculos.add(tipoVehiculo);
-	}
-	
-	public boolean isEmptyTipoVehiculos() {
-		return tipoVehiculos.isEmpty();
-	}
-
-	public boolean removeTipoVehiculo(TTipoVehiculo tipoVehiculo) {
-		return tipoVehiculos.remove(tipoVehiculo);
+	@SuppressWarnings("unchecked")
+	public static TableQuery<TTarifa> of() {
+		return (TableQuery<TTarifa>) of(TTarifa.class);
 	}
 }

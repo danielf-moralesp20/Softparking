@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import dfm.softparking.database.utils.TableQuery;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -24,8 +25,8 @@ import lombok.ToString;
 @Entity
 @Table(name = "tipos_vehiculos")
 @NoArgsConstructor
-@ToString(callSuper = true)
-public class TTipoVehiculo implements Serializable {
+@ToString(exclude = {"automotores"})
+public class TTipoVehiculo extends TableQuery<TTipoVehiculo> implements Serializable {
 	private static final long serialVersionUID = -6786305568497129376L;
 
 	@Id
@@ -59,16 +60,9 @@ public class TTipoVehiculo implements Serializable {
 		this.codTipoVehiculo = codTipoVehiculo;
 		this.tarifa = tarifa;
 	}
-
-	public boolean addAutomotor(TAutomotor e) {
-		return automotores.add(e);
-	}
 	
-	public boolean isEmptyAutomotores() {
-		return automotores.isEmpty();
-	}
-
-	public boolean removeAutomotor(TAutomotor automotor) {
-		return automotores.remove(automotor);
+	@SuppressWarnings("unchecked")
+	public static TableQuery<TTipoVehiculo> of() {
+		return (TableQuery<TTipoVehiculo>) of(TTipoVehiculo.class);
 	}
 }
