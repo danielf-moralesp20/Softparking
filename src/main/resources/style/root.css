@@ -1,15 +1,19 @@
 * {
 	color-principal : #256E5D;
-	-fx-font-family: ARIAL;
 }
 
 /*
  * Text
  */
 .label{
-	-fx-font-family: "ARIAL";
+	-fx-font-family: ARIAL;
 	-fx-font-weight: BOLD;
 	-fx-text-fill: color-principal;
+}
+
+.error-label {
+	-fx-font: NORMAL ITALIC 12 "CONSOLAS";
+    -fx-text-fill: RED;
 }
 
 /*
@@ -43,4 +47,13 @@
 	-fx-prompt-text-fill: color-principal;
 	-jfx-focus-color: color-principal;
 	-jfx-unfocus-color: color-principal;
+}
+
+/*
+ * Input error
+ */
+.errorInput {
+	-jfx-focus-color: RED;
+	-jfx-unfocus-color: RED;
+	-fx-prompt-text-fill: RED;
 }
