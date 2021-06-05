@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dfm.softparking.business.UIFactory;
+import dfm.softparking.business.UIFactory.UIModule;
 import dfm.softparking.controllers.FrameController;
 import dfm.softparking.controllers.IWindowView;
 import javafx.application.Application;
@@ -19,7 +20,7 @@ public class IndexController extends Application implements IWindowView, Initial
 	
 	public IndexController() {
 		location = getClass().getResource("/views/index/Index.fxml");
-		frame = new FrameController();
+		frame = (FrameController) UIFactory.buildView(UIModule.FRAME);
 		frame.setMaximized(true);
 	}
 	
@@ -40,8 +41,6 @@ public class IndexController extends Application implements IWindowView, Initial
 	}
 
 	@FXML void btnSettingsEventOnAction(ActionEvent event) {
-		ApplicationSettingsController settingsController = (ApplicationSettingsController) UIFactory.buildView(UIFactory.APPLICATION_SETTINGS);
-		settingsController.show();
 	}
 	
 	@FXML private ResourceBundle resources;
