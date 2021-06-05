@@ -1,21 +1,28 @@
 package dfm.softparking.controllers;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import dfm.softparking.controllers.utils.IContainerView;
+import dfm.softparking.controllers.utils.IControllerView;
+import dfm.softparking.controllers.utils.UIFactory.UIModule;
 import dfm.softparking.utils.UtilUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import lombok.Getter;
+import lombok.Setter;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class FrameController extends Stage implements IContainerView, IControllerView, Initializable {
+	@Getter @Setter private Runnable dialogCloser;
+	
 	public FrameController() {
 		location = getClass().getResource("/views/Frame.fxml");
 		super.initStyle(StageStyle.UNDECORATED);
@@ -29,6 +36,8 @@ public class FrameController extends Stage implements IContainerView, IControlle
 	
     @FXML public void btnCloseEventOnAction(ActionEvent event) {
     	super.close();
+    	if(Optional.ofNullable(dialogCloser).isPresent())
+    		dialogCloser.run();
     }
 
     @FXML public void btnMinimizeEventOnAction(ActionEvent event) {
@@ -44,8 +53,13 @@ public class FrameController extends Stage implements IContainerView, IControlle
 		}
 	}
 	
+	public static FrameController of() {
+		return (FrameController) IControllerView.of(UIModule.FRAME);
+	}
+	
     @FXML private ResourceBundle resources;
     @Getter @FXML private URL location;
-    @Getter @FXML private VBox globalContainer;
+    @Getter @FXML private StackPane globalContainer;
     @FXML private StackPane mainContainer;
+    @Getter @FXML private Button btnMinimize;
 }

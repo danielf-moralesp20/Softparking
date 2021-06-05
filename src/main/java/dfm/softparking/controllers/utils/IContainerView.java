@@ -1,4 +1,4 @@
-package dfm.softparking.controllers;
+package dfm.softparking.controllers.utils;
 
 import javafx.scene.layout.Pane;
 

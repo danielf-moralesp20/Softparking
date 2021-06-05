@@ -11,12 +11,10 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.base.ValidatorBase;
 
-import dfm.softparking.business.UIFactory;
-import dfm.softparking.business.UIFactory.UIModule;
 import dfm.softparking.business.runtime.Collector;
 import dfm.softparking.business.runtime.Collector.CollectorKey;
 import dfm.softparking.controllers.FrameController;
-import dfm.softparking.controllers.IWindowView;
+import dfm.softparking.controllers.utils.IWindowView;
 import dfm.softparking.utils.forms.FormControl;
 import dfm.softparking.utils.forms.FormControl.EValidators;
 import javafx.application.Application;
@@ -33,7 +31,7 @@ public class IndexController extends Application implements IWindowView, Initial
 	
 	public IndexController() {
 		location = getClass().getResource("/views/index/Index.fxml");
-		frame = (FrameController) UIFactory.buildView(UIModule.FRAME);
+		frame = FrameController.of();
 		frame.setMaximized(true);
 		
 		ResourceBundle bundle = (ResourceBundle) Collector.getCollector().get(CollectorKey.BUNDLED_LANG);
@@ -71,6 +69,7 @@ public class IndexController extends Application implements IWindowView, Initial
 	}
 
 	@FXML void btnSettingsEventOnAction(ActionEvent event) {
+		ApplicationSettingsController.of().showOverParent(getFrame().getGlobalContainer());
 	}
 	
 	@FXML private ResourceBundle resources;

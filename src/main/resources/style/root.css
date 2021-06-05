@@ -49,6 +49,29 @@
 	-jfx-unfocus-color: color-principal;
 }
 
+/* 
+ * Combo box
+ */
+.combo-box {
+	-fx-cursor: HAND;
+	-Jfx-button-type : RAISED;
+	-fx-font-family: CONSOLAS;	
+	-fx-font-size: 14;	
+	-fx-text-fill: BLACK;
+	-jfx-label-float: true;		
+	-fx-prompt-text-fill: color-principal;
+	-jfx-focus-color: color-principal;
+	-jfx-unfocus-color: color-principal;
+}
+
+.combo-box .list-cell {
+	-fx-text-fill: BLACK;
+}
+
+.combo-box .arrow,
+.choice-box .arrow {
+    -fx-background-color: color-principal;   
+}
 /*
  * Input error
  */

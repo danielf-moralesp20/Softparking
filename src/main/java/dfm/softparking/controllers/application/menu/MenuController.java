@@ -3,7 +3,7 @@ package dfm.softparking.controllers.application.menu;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import dfm.softparking.controllers.IControllerView;
+import dfm.softparking.controllers.utils.IControllerView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
