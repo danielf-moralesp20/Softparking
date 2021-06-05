@@ -24,7 +24,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "tbl_cliente")
 @NoArgsConstructor
 @ToString(exclude = {"automotores"})
 public class TCliente extends TableQuery<TCliente> implements Serializable {	
@@ -32,12 +32,12 @@ public class TCliente extends TableQuery<TCliente> implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PK_cliente")
+	@Column
 	@Getter
-	private int idCliente;
+	private int id;
 	
 	@OneToOne(targetEntity = TInfoGeneral.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "FK_info_general", nullable = false, unique = true, referencedColumnName = "PK_info_general")
+	@JoinColumn(name = "fk_info_general", nullable = false, unique = true, referencedColumnName = "id")
 	@Getter
 	@Setter
 	@NonNull

@@ -23,7 +23,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "tipos_vehiculos")
+@Table(name = "tbl_tipo_vehiculo")
 @NoArgsConstructor
 @ToString(exclude = {"automotores"})
 public class TTipoVehiculo extends TableQuery<TTipoVehiculo> implements Serializable {
@@ -31,17 +31,20 @@ public class TTipoVehiculo extends TableQuery<TTipoVehiculo> implements Serializ
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PK_tipo_vehiculo")
+	@Column
 	@Getter 
-	private int idTipoVehiculo;
+	private int id;
 	
+	// Avaible codes:
+	// 1 - Automotor 
+	// 2 - Motocicleta
 	@Column(name = "cod_tipo_vehiculo", unique = true, nullable = false)
 	@Getter 
 	@Setter 
 	private int codTipoVehiculo;
 	
-	@ManyToOne(targetEntity = TTarifa.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
-	@JoinColumn(name = "FK_tarifa", nullable = false, referencedColumnName = "PK_tarifa")
+	@ManyToOne(targetEntity = TTarifa.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name = "fk_tarifa", nullable = false, referencedColumnName = "id")
 	@Getter 
 	@Setter 
 	@NonNull

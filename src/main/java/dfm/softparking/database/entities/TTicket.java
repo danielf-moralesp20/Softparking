@@ -21,7 +21,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "tickets")
+@Table(name = "tbl_ticket")
 @NoArgsConstructor
 @ToString
 public class TTicket extends TableQuery<TTicket> implements Serializable {
@@ -29,9 +29,9 @@ public class TTicket extends TableQuery<TTicket> implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PK_ticket")
+	@Column
 	@Getter
-	private int idTicket;
+	private int id;
 	
 	@Column(name = "fecha_ingreso", nullable = false)
 	@Getter
@@ -46,27 +46,34 @@ public class TTicket extends TableQuery<TTicket> implements Serializable {
 	private Date fechaSalida;
 	
 	@ManyToOne(targetEntity = TAutomotor.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
-	@JoinColumn(nullable = false, name = "FK_automotor", referencedColumnName = "PK_automotor")
+	@JoinColumn(nullable = false, name = "fk_automotor", referencedColumnName = "id")
 	@Getter
 	@Setter
 	@NonNull
 	private TAutomotor automotor;
 	
-	@Column(name = "valor_total_servicio", nullable = false)
+	@ManyToOne(targetEntity = TTarifa.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(nullable = false, name = "fk_tarifa", referencedColumnName = "id")
 	@Getter
 	@Setter
-	private float valorTotalServicio;
+	@NonNull
+	private TTarifa tarifa;
+	
+	@Column(name = "valor_total", nullable = false)
+	@Getter
+	@Setter
+	private float valorTotal;
 	
 	@Column(length = 300)
 	@Getter
 	@Setter
-	private String comentario;
+	private String observaciones;
 	
-	public TTicket(Date fechaIngreso, Date fechaSalida, TAutomotor automotor, float valorTotalServicio) {
+	public TTicket(Date fechaIngreso, Date fechaSalida, TAutomotor automotor, float valorTotal) {
 		this.fechaIngreso = fechaIngreso;
 		this.fechaSalida = fechaSalida;
 		this.automotor = automotor;
-		this.valorTotalServicio = valorTotalServicio;
+		this.valorTotal = valorTotal;
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import dfm.softparking.database.entities.TAutomotor.TipoVehiculo;
 import dfm.softparking.database.utils.TableQuery;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +25,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "tarifas")
+@Table(name = "tbl_tarifa")
 @NoArgsConstructor
 @ToString(exclude = {"tipoVehiculos"})
 public class TTarifa extends TableQuery<TTarifa> implements Serializable {
@@ -30,9 +33,15 @@ public class TTarifa extends TableQuery<TTarifa> implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PK_tarifa")
+	@Column
 	@Getter
-	private int idTarifa;
+	private int id;
+	
+	@Column(name = "cod_tipo_vehiculo", nullable = false)
+	@Enumerated(EnumType.ORDINAL)
+	@Getter 
+	@Setter 
+	private TipoVehiculo tipoVehiculo;
 	
 	@Column(name = "valor_fraccion", nullable = false)
 	@Getter
@@ -48,7 +57,8 @@ public class TTarifa extends TableQuery<TTarifa> implements Serializable {
 	@NonNull
 	private List<TTipoVehiculo> tipoVehiculos = new ArrayList<TTipoVehiculo>();
 	
-	public TTarifa(float valorFraccion) {
+	public TTarifa(TipoVehiculo tipoVehiculo, float valorFraccion) {
+		this.tipoVehiculo = tipoVehiculo;
 		this.valorFraccion = valorFraccion;
 	}
 	

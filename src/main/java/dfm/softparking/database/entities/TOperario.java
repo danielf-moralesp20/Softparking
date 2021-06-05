@@ -21,7 +21,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "operarios")
+@Table(name = "tbl_operario")
 @NoArgsConstructor
 @ToString
 @NamedQuery(name = "login", query = "FROM TOperario WHERE infoGeneral.correo = :email AND contrasenia = :pass")
@@ -30,12 +30,12 @@ public class TOperario extends TableQuery<TOperario> implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PK_operario")
+	@Column
 	@Getter
-	private int idOperario;
+	private int id;
 	
 	@OneToOne(targetEntity = TInfoGeneral.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "FK_info_general", nullable = false, unique = true, referencedColumnName = "PK_info_general")
+	@JoinColumn(name = "fk_info_general", nullable = false, unique = true, referencedColumnName = "id")
 	@Getter
 	@Setter
 	@NonNull
@@ -47,15 +47,15 @@ public class TOperario extends TableQuery<TOperario> implements Serializable {
 	@NonNull
 	private String contrasenia;
 	
-	@Column(name = "is_accesible", nullable = false)
+	@Column(name = "disabled", nullable = false)
 	@Getter
 	@Setter
-	private boolean isAccesible;
+	private boolean isDisabled;
 	
-	public TOperario(TInfoGeneral infoGeneral, String contrasenia, boolean isAccesible) {
+	public TOperario(TInfoGeneral infoGeneral, String contrasenia, boolean isDisabled) {
 		this.infoGeneral = infoGeneral;
 		this.contrasenia = contrasenia;
-		this.isAccesible = isAccesible;
+		this.isDisabled = isDisabled;
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,20 +27,25 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "automotores")
+@Table(name = "tbl_automotor")
 @NoArgsConstructor
 @ToString(exclude = {"automotorParking", "tickets"})
 public class TAutomotor extends TableQuery<TAutomotor> implements Serializable {
+	public enum TipoVehiculo {
+		CARRO,
+		MOTOCICLETA
+	}
+	
 	private static final long serialVersionUID = 268865280296387192L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PK_automotor")
-	@Getter
-	private int idAutomotor;
+	@Column
+	@Getter 
+	private int id;
 	
 	@ManyToOne(targetEntity = TCliente.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "FK_cliente", referencedColumnName = "PK_cliente")
+	@JoinColumn(name = "fk_cliente", referencedColumnName = "id")
 	@Getter
 	@Setter
 	@NonNull
@@ -50,12 +57,11 @@ public class TAutomotor extends TableQuery<TAutomotor> implements Serializable {
 	@NonNull
 	private String placa;
 	
-	@ManyToOne(targetEntity = TTipoVehiculo.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "FK_tipo_vehiculo", nullable = false, referencedColumnName = "PK_tipo_vehiculo")
-	@Getter
-	@Setter
-	@NonNull
-	private TTipoVehiculo tipoVehiculo;
+	@Column(name = "cod_tipo_vehiculo", nullable = false)
+	@Enumerated(EnumType.ORDINAL)
+	@Getter 
+	@Setter 
+	private TipoVehiculo tipoVehiculo;
 	
 	/*
 	 * Inicio de relaciones mapeadas
@@ -72,7 +78,7 @@ public class TAutomotor extends TableQuery<TAutomotor> implements Serializable {
 	@NonNull
 	private List<TTicket> tickets = new ArrayList<TTicket>();
 	
-	public TAutomotor(TCliente cliente, String placa, TTipoVehiculo tipoVehiculo) {
+	public TAutomotor(TCliente cliente, String placa, TipoVehiculo tipoVehiculo) {
 		this.cliente = cliente;
 		this.placa = placa;
 		this.tipoVehiculo = tipoVehiculo;

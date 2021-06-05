@@ -21,7 +21,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "parking_automotores")
+@Table(name = "tbl_automotor_parking")
 @NoArgsConstructor
 @ToString
 public class TParkingAutomor extends TableQuery<TParkingAutomor> implements Serializable {
@@ -29,12 +29,12 @@ public class TParkingAutomor extends TableQuery<TParkingAutomor> implements Seri
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PK_parking_automotor")
+	@Column
 	@Getter
-	private int idParkingAutomotor;
+	private int id;
 	
 	@OneToOne(targetEntity = TAutomotor.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "FK_automotor", unique = true, nullable = false, referencedColumnName = "PK_automotor")
+	@JoinColumn(name = "fk_automotor", unique = true, nullable = false, referencedColumnName = "id")
 	@Getter
 	@Setter
 	@NonNull

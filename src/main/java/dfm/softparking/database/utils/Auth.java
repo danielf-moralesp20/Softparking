@@ -23,7 +23,7 @@ public class Auth {
 		
 		if(Optional.ofNullable(result).isEmpty())
 			throw new AuthException(ErrorCodes.WRONG_CREDENTIALS);
-		if(!result.isAccesible())
+		if(result.isDisabled())
 			throw new AuthException(ErrorCodes.USER_DISABLED);
 		
 		currentUser = result;

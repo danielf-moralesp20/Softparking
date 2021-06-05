@@ -5,10 +5,11 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,17 +21,22 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "infos_generales")
+@Table(name = "tbl_info_general")
 @NoArgsConstructor
 @ToString(exclude = {"operario", "cliente"})
 public class TInfoGeneral extends TableQuery<TInfoGeneral> implements Serializable {
+	public enum TipoDocumento {
+		CEDULA_CIUDADANIA,
+		CEDULA_EXTRANJERIA
+	}
+	
 	private static final long serialVersionUID = 226101105000684811L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PK_info_general")
+	@Column
 	@Getter 
-	private int idInfoGeneral = 3;
+	private int id;
 	
 	@Column(length = 30, nullable = false)
 	@Getter
@@ -44,14 +50,19 @@ public class TInfoGeneral extends TableQuery<TInfoGeneral> implements Serializab
 	@NonNull
 	private String apellido;
 	
-	@OneToOne(targetEntity = TDocumento.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(nullable = false, name = "FK_documento", referencedColumnName = "PK_documento")
+	@Column(name = "cod_tipo_documento", nullable = false)
+	@Enumerated(EnumType.ORDINAL)
+	@Getter
+	@Setter
+	private TipoDocumento tipoDocumento;
+	
+	@Column(name = "numero_documento", nullable = false, unique = true)
 	@Getter
 	@Setter
 	@NonNull
-	private TDocumento documento;
+	private	Long numeroDocumento;
 	
-	@Column()
+	@Column
 	@Getter
 	@Setter
 	private Long celular;
@@ -67,10 +78,10 @@ public class TInfoGeneral extends TableQuery<TInfoGeneral> implements Serializab
 	@NonNull
 	private String correo;
 	
-	@Column(name = "ruta_foto")
+	@Column(name = "url_foto")
 	@Getter
 	@Setter
-	private String rutaFoto;
+	private String urlFoto;
 	
 	/*
 	 * Inicio de relaciones mapeadas
@@ -87,10 +98,11 @@ public class TInfoGeneral extends TableQuery<TInfoGeneral> implements Serializab
 	@NonNull
 	private TOperario operario;
 	
-	public TInfoGeneral(String nombre, String apellido, TDocumento documento, String correo) {
+	public TInfoGeneral(String nombre, String apellido, TipoDocumento tipoDocumento, Long numeroDocumento, String correo) {
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.documento = documento;
+		this.tipoDocumento = tipoDocumento;
+		this.numeroDocumento = numeroDocumento;
 		this.correo = correo;
 	}
 	
