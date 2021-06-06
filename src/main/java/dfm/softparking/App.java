@@ -7,13 +7,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import dfm.softparking.business.AppProperties;
-import dfm.softparking.business.AppProperties.AppPropertyKey;
+import dfm.softparking.business.AppDocumentProperties;
 import dfm.softparking.business.runtime.Collector;
 import dfm.softparking.business.runtime.Collector.CollectorKey;
-import dfm.softparking.controllers.index.IndexController;
 import dfm.softparking.database.exceptions.DatabaseException;
 import dfm.softparking.database.utils.Connection;
+import dfm.softparking.views.controllers.index.IndexController;
 
 public class App {
 	public static void main(String[] args) {
@@ -30,15 +29,10 @@ public class App {
     	availableLanguages.add("es");
        	collector.set(CollectorKey.AVAILABE_LANGUAGES, availableLanguages);
        	
-       	Locale locale = new Locale(AppProperties.getAppProperties().get(AppPropertyKey.LANGUAGE));
+       	Locale locale = new Locale(AppDocumentProperties.getInstance().getLanguageCode());
        	collector.set(CollectorKey.BUNDLED_LANG, ResourceBundle.getBundle("bundles.langBundle", locale));
        	
        	Connection.initialize("persistence");
-       	try {
-			Connection.getInstance().connect();
-		} catch (DatabaseException e) {
-			e.printStackTrace();
-		}
+       	try { Connection.getInstance().connect(); } catch (DatabaseException e) { e.printStackTrace(); }
     }
 }
-

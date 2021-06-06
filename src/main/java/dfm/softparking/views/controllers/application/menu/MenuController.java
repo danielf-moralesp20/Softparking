@@ -1,9 +1,9 @@
-package dfm.softparking.controllers.application.menu;
+package dfm.softparking.views.controllers.application.menu;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import dfm.softparking.controllers.utils.IControllerView;
+import dfm.softparking.views.interfaces.IControllerView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

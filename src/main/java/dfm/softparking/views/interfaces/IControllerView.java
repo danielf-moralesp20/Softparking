@@ -1,9 +1,10 @@
-package dfm.softparking.controllers.utils;
+package dfm.softparking.views.interfaces;
 
 import java.net.URL;
 
-import dfm.softparking.controllers.utils.UIFactory.UIModule;
-import dfm.softparking.utils.UtilUI;
+import dfm.softparking.views.utils.UIFactory;
+import dfm.softparking.views.utils.UtilUI;
+import dfm.softparking.views.utils.UIFactory.UIModule;
 import javafx.scene.layout.Pane;
 
 public interface IControllerView {		

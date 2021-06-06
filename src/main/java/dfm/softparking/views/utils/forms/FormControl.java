@@ -1,4 +1,4 @@
-package dfm.softparking.utils.forms;
+package dfm.softparking.views.utils.forms;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -20,7 +20,7 @@ import com.jfoenix.validation.RegexValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
 
-import dfm.softparking.utils.forms.validators.EmailValidator;
+import dfm.softparking.views.utils.forms.validators.EmailValidator;
 import javafx.scene.control.TextField;
 
 public class FormControl {

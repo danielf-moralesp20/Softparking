@@ -1,8 +1,8 @@
-package dfm.softparking.controllers.utils;
+package dfm.softparking.views.interfaces;
 
 import com.jfoenix.controls.JFXDialog;
 
-import dfm.softparking.controllers.FrameController;
+import dfm.softparking.views.controllers.FrameController;
 import javafx.scene.Node;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.StackPane;

@@ -1,4 +1,4 @@
-package dfm.softparking.controllers.index;
+package dfm.softparking.views.controllers.index;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -11,12 +11,11 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.base.ValidatorBase;
 
-import dfm.softparking.business.runtime.Collector;
-import dfm.softparking.business.runtime.Collector.CollectorKey;
-import dfm.softparking.controllers.FrameController;
-import dfm.softparking.controllers.utils.IWindowView;
-import dfm.softparking.utils.forms.FormControl;
-import dfm.softparking.utils.forms.FormControl.EValidators;
+import dfm.softparking.business.Language;
+import dfm.softparking.views.controllers.FrameController;
+import dfm.softparking.views.interfaces.IWindowView;
+import dfm.softparking.views.utils.forms.FormControl;
+import dfm.softparking.views.utils.forms.FormControl.EValidators;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,10 +33,9 @@ public class IndexController extends Application implements IWindowView, Initial
 		frame = FrameController.of();
 		frame.setMaximized(true);
 		
-		ResourceBundle bundle = (ResourceBundle) Collector.getCollector().get(CollectorKey.BUNDLED_LANG);
 		EnumMap<EValidators, String> messages = new EnumMap<>(EValidators.class);
-		messages.put(EValidators.REQUIRED, bundle.getString("FIELD_REQUIRED"));
-		messages.put(EValidators.EMAIL, bundle.getString("FIELD_EMAIL_FORMAT"));
+		messages.put(EValidators.REQUIRED,  Language.translate("FIELD_REQUIRED"));
+		messages.put(EValidators.EMAIL, Language.translate("FIELD_EMAIL_FORMAT"));
 		
 		formControl = new FormControl(messages);
 	}

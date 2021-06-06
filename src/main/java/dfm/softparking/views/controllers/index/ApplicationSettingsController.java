@@ -1,14 +1,15 @@
-package dfm.softparking.controllers.index;
+package dfm.softparking.views.controllers.index;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXComboBox;
+
 import dfm.softparking.business.Language;
-import dfm.softparking.controllers.FrameController;
-import dfm.softparking.controllers.utils.IControllerView;
-import dfm.softparking.controllers.utils.IWindowView;
-import dfm.softparking.controllers.utils.UIFactory.UIModule;
+import dfm.softparking.views.controllers.FrameController;
+import dfm.softparking.views.interfaces.IControllerView;
+import dfm.softparking.views.interfaces.IWindowView;
+import dfm.softparking.views.utils.UIFactory.UIModule;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

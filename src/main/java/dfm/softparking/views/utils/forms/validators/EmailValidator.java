@@ -1,4 +1,4 @@
-package dfm.softparking.utils.forms.validators;
+package dfm.softparking.views.utils.forms.validators;
 
 import com.jfoenix.validation.RegexValidator;
 

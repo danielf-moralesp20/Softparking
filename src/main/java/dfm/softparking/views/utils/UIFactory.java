@@ -1,11 +1,12 @@
-package dfm.softparking.controllers.utils;
+package dfm.softparking.views.utils;
 
 import java.util.function.Supplier;
 
-import dfm.softparking.controllers.FrameController;
-import dfm.softparking.controllers.application.menu.MenuController;
-import dfm.softparking.controllers.index.ApplicationSettingsController;
-import dfm.softparking.controllers.index.IndexController;
+import dfm.softparking.views.controllers.FrameController;
+import dfm.softparking.views.controllers.application.menu.MenuController;
+import dfm.softparking.views.controllers.index.ApplicationSettingsController;
+import dfm.softparking.views.controllers.index.IndexController;
+import dfm.softparking.views.interfaces.IControllerView;
 
 public class UIFactory {
 	public static enum UIModule {

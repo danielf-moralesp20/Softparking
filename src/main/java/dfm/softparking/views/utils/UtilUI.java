@@ -1,4 +1,4 @@
-package dfm.softparking.utils;
+package dfm.softparking.views.utils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
