@@ -19,8 +19,8 @@ module dfm.softparking {
     
     requires org.hibernate.orm.core;
     
-    opens dfm.softparking.views.controllers to javafx.fxml;
-    opens dfm.softparking.views.controllers.index to javafx.graphics, javafx.fxml;
-	opens dfm.softparking.views.controllers.application.menu to javafx.fxml;
-	opens dfm.softparking.database.entities to org.hibernate.orm.core;
+    opens com.dfm.softparking.views.controllers to javafx.fxml;
+    opens com.dfm.softparking.views.controllers.index to javafx.graphics, javafx.fxml;
+	opens com.dfm.softparking.views.controllers.application.menu to javafx.fxml;
+	opens com.dfm.softparking.database.entities to org.hibernate.orm.core;
 }

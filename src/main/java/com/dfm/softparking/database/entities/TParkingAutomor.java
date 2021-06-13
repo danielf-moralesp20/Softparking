@@ -1,0 +1,59 @@
+package com.dfm.softparking.database.entities;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.dfm.softparking.database.utils.TableQuery;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Table(name = "tbl_automotor_parking")
+@NoArgsConstructor
+@ToString
+public class TParkingAutomor extends TableQuery<TParkingAutomor> implements Serializable {
+	private static final long serialVersionUID = -7653667211168471673L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	@Getter
+	private int id;
+	
+	@OneToOne(targetEntity = TAutomotor.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(name = "fk_automotor", unique = true, nullable = false, referencedColumnName = "id")
+	@Getter
+	@Setter
+	@NonNull
+	private TAutomotor automotor;
+	
+	@Column(name = "fecha_ingreso", nullable = false)
+	@Getter
+	@Setter
+	@NonNull
+	private Date fechaIngreso;
+	
+	public TParkingAutomor(TAutomotor automotor, Date fechaIngreso) {
+		this.automotor = automotor;
+		this.fechaIngreso = fechaIngreso;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static TableQuery<TParkingAutomor> of() {
+		return (TableQuery<TParkingAutomor>) of(TParkingAutomor.class);
+	}
+}

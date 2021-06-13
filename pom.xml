@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>dfm</groupId>
+    <groupId>com.dfm</groupId>
     <artifactId>softparking</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Softparking</name>
@@ -115,7 +115,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>dfm.softparking.controllers.index.IndexController</mainClass>
+                    <mainClass>com.dfm.softparking.controllers.index.IndexController</mainClass>
                 </configuration>
             </plugin>
         </plugins>
